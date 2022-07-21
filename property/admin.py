@@ -6,7 +6,8 @@ from .models import Flat
 class AuthorAdmin(admin.ModelAdmin):
     search_fields = ('town', 'address',)
 
+class FlatAdmin(admin.ModelAdmin):
+    readonly_fields = ('created_at',)
 
-admin.site.register(Flat, AuthorAdmin)
 
-admin.site.register(Flat)
+admin.site.register(Flat, FlatAdmin)
