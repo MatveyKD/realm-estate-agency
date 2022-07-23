@@ -11,6 +11,7 @@ class AuthorAdmin(admin.ModelAdmin):
 
 class FlatAdmin(admin.ModelAdmin):
     readonly_fields = ('created_at',)
+    raw_id_fields = ("liked_by",)
 
 class ComplaintAdmin(admin.ModelAdmin):
     raw_id_fields = ("user", "flat",)
