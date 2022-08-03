@@ -12,7 +12,6 @@ def fix_phonenumbers(apps, schema_editor):
             phonenumber=flat.owners_phonenumber,
             pure_phone=flat.owner_pure_phone
         )
-        flat.save()
         owner.flats_have.add(flat)
 
 class Migration(migrations.Migration):
