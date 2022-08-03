@@ -7,6 +7,7 @@ class FlatshipInline(admin.TabularInline):
     model = Owner.flats_have.through
     raw_id_fields = ("owner", "flat",)
 
+@admin.register(Flat)
 class FlatAdmin(admin.ModelAdmin):
     search_fields = ('town', 'address',)
     list_display = ('address', 'price', 'new_building', 'construction_year', 'town',)
@@ -19,6 +20,7 @@ class FlatAdmin(admin.ModelAdmin):
         FlatshipInline,
     ]
 
+@admin.register(Owner)
 class OwnerAdmin(admin.ModelAdmin):
     raw_id_fields = ("flats_have",)
     inlines = [
@@ -26,11 +28,12 @@ class OwnerAdmin(admin.ModelAdmin):
     ]
     exclude = ('flats_have',)
 
+@admin.register(Complaint)
 class ComplaintAdmin(admin.ModelAdmin):
     raw_id_fields = ("user", "flat",)
 
 
 
-admin.site.register(Flat, FlatAdmin)
-admin.site.register(Complaint, ComplaintAdmin)
-admin.site.register(Owner, OwnerAdmin)
+#admin.site.register(Flat, FlatAdmin)
+#admin.site.register(Complaint, ComplaintAdmin)
+#admin.site.register(Owner, OwnerAdmin)
