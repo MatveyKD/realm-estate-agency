@@ -6,7 +6,7 @@ import phonenumbers
 
 def fix_phonenumbers(apps, schema_editor):
     Flat = apps.get_model('property', 'Flat')
-    for flat in Flat.objects.all():
+    for flat in Flat.objects.all().iterator():
         phonenumber = flat.owners_phonenumber
         parsed_phonenumber = phonenumbers.parse(phonenumber, 'RU')
         fixed_phonenumber = phonenumbers.format_number(parsed_phonenumber, phonenumbers.PhoneNumberFormat.E164)

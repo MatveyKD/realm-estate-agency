@@ -2,11 +2,11 @@
 
 from django.db import migrations
 
-def fix_phonenumbers(apps, schema_editor):
+def create_owners(apps, schema_editor):
     flats = apps.get_model('property', 'Flat')
     owners = apps.get_model('property', 'Owner')
 
-    for flat in flats.objects.all():
+    for flat in flats.objects.all().iterator():
         owner, is_created = owners.objects.get_or_create(
             name=flat.owner,
             phonenumber=flat.owners_phonenumber,
@@ -21,5 +21,5 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RunPython(fix_phonenumbers),
+        migrations.RunPython(create_owners),
     ]
