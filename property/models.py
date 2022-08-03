@@ -65,13 +65,15 @@ class Complaint(models.Model):
         on_delete=models.SET_NULL,
         blank=True,
         null=True,
-        verbose_name="Пользователь, написавший жалобу"
+        verbose_name="Пользователь, написавший жалобу",
+        related_name="writed_complaints"
     )
     flat = models.ForeignKey(
         Flat,
         on_delete=models.SET_NULL,
         null=True,
-        verbose_name="Квартира, на которую написали жалобу"
+        verbose_name="Квартира, на которую написали жалобу",
+        related_name="complaints"
     )
     text = models.TextField(verbose_name="Текст жалобы", blank=True)
 
@@ -87,7 +89,7 @@ class Owner(models.Model):
     )
     flats_have = models.ManyToManyField(
         Flat,
-        related_name="flat_owner"
+        related_name="owners"
     )
     def __str__(self):
         return self.name
