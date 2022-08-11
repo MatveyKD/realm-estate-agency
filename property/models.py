@@ -70,8 +70,7 @@ class Complaint(models.Model):
     )
     flat = models.ForeignKey(
         Flat,
-        on_delete=models.SET_NULL,
-        null=True,
+        on_delete=models.CASCADE,
         verbose_name="Квартира, на которую написали жалобу",
         related_name="complaints"
     )
